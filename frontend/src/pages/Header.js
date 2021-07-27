@@ -1,4 +1,4 @@
-import React, {useState } from "react";
+import React, { useState } from "react";
 import SearchIcon from "@material-ui/icons/Search";
 // import { Link } from 'react-router-dom';
 
@@ -6,56 +6,79 @@ import "./Header.css";
 
 const Header = () => {
   const [formData, updateFormData] = useState("");
+  const [res, setRes] = useState([]);
 
   const handleChange = (e) => {
     updateFormData({
       ...formData,
-      [e.target.name]: e.target.value.trim()
+      [e.target.name]: e.target.value.trim(),
     });
   };
 
   const handleSubmit = (e) => {
-    e.preventDefault()
+    e.preventDefault();
     console.log(formData);
-    let fetchData
-    
-    try{
-        fetchData = async () => {
-            const data = {formData};
-            const response = await fetch("http://localhost:5000/find-item", {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(data)
-            })
-            const data1 = response.json();
-            console.log(data1)
-            if(response.ok){
-                console.log("done");
-            }
+    let fetchData;
+
+    try {
+      fetchData = async () => {
+        const data = { formData };
+        const response = await fetch("http://localhost:5000/find-item", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(data),
+        });
+        const field = await response.json();
+        console.log(field.result);
+        setRes(field.result);
+        //console.log(res.result.name);
+        //console.log(res);
+        if (response.ok) {
+          console.log("done");
         }
-    }catch(err){
-        console.log(err);
+      };
+    } catch (err) {
+      console.log(err);
     }
-    
 
     fetchData();
   };
 
   return (
-    <div className="header">
-      <h1>FKTSCRAP</h1>
-      <div className="header_search">
-        <input
-          className="header_searchInput"
-          type="text"
-          name="name"
-          onChange={handleChange}
-        />
-        <SearchIcon className="header_searchIcon" onClick={handleSubmit} />
+    <React.Fragment>
+      <div className="header">
+        <h1>FKTSCRAP</h1>
+        <div className="header_search">
+          <input
+            className="header_searchInput"
+            type="text"
+            name="name"
+            onChange={handleChange}
+          />
+          <SearchIcon className="header_searchIcon" onClick={handleSubmit} />
+        </div>
       </div>
-    </div>
+      <div>
+        {res &&
+          res.length > 0 &&
+          res.map((item,index) => {
+            return (
+              <div>
+                <h5 key={index}>{item.name}</h5>
+                <img
+                key={index}
+                src={item.img_link}
+                alt={item.name}
+                />
+                <h5 key={index}>{item.price}</h5>
+                
+              </div>
+            );
+          })}
+      </div>
+    </React.Fragment>
   );
 };
 export default Header;
