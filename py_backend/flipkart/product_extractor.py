@@ -7,17 +7,17 @@ class Product:
 
     def __init__(self, name):
         self.name = name
+        self.url = "https://www.flipkart.com"
 
     def get_details(self):
         products = []
-        url = "https://www.flipkart.com"
         search_query = "/search?q=" + quote(self.name)
-        res = urlopen(url + search_query)
+        res = urlopen(self.url + search_query)
         soup = bs(res.read(), "html.parser")
         pages = [i['href'] for i in soup.find_all("a", {"class": "ge-49M"})]
 
         for page in pages:
-            res = urlopen(url + page)
+            res = urlopen(self.url + page)
             soup = bs(res.read(), "html.parser")
 
             # type 1
