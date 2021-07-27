@@ -29,7 +29,8 @@ const Header = () => {
                 },
                 body: JSON.stringify(data)
             })
-    
+            const data1 = response.json();
+            console.log(data1)
             if(response.ok){
                 console.log("done");
             }
