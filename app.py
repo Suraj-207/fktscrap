@@ -1,8 +1,8 @@
-from flask import render_template, jsonify, Flask, request, send_from_directory
-from flask_restful import Api,Resource,reqparse
+from flask import Flask, request, send_from_directory
+from flask_restful import Api,Resource
 from flask_cors import CORS
 import os
-from py_backend.product_extractor import Product
+from py_backend.flipkart.product_extractor import Product
 
 app = Flask(__name__, static_url_path='', static_folder='frontend/build')
 CORS(app)
