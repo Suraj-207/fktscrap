@@ -60,23 +60,20 @@ const Header = () => {
           <SearchIcon className="header_searchIcon" onClick={handleSubmit} />
         </div>
       </div>
-      <div>
-        {res &&
-          res.length > 0 &&
-          res.map((item,index) => {
-            return (
-              <div>
-                <h5 key={index}>{item.name}</h5>
-                <img
-                key={index}
-                src={item.img_link}
-                alt={item.name}
-                />
-                <h5 key={index}>{item.price}</h5>
-                
-              </div>
-            );
-          })}
+      <div className="row">
+        <div className="row_data">
+          {res &&
+            res.length > 0 &&
+            res.map((item, index) => {
+              return (
+                <div className="row_data_single" key={item.id}>
+                  <img src={item.img_link} alt={item.name} />
+                  <h5>{item.name}</h5>
+                  <h5>{item.price}</h5>
+                </div>
+              );
+            })}
+        </div>
       </div>
     </React.Fragment>
   );
