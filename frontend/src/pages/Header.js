@@ -49,6 +49,7 @@ const Header = () => {
         <input
           className="header_searchInput"
           type="text"
+          name="name"
           onChange={handleChange}
         />
         <SearchIcon className="header_searchIcon" onClick={handleSubmit} />
