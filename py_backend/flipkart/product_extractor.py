@@ -17,7 +17,7 @@ class Product:
         soup = bs(res.read(), "html.parser")
         pages = [i['href'] for i in soup.find_all("a", {"class": "ge-49M"})]
 
-        for page in pages:
+        for page in pages[:2]:
             res = urlopen(self.url + page)
             soup = bs(res.read(), "html.parser")
 
