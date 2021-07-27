@@ -29,7 +29,8 @@ const Header = () => {
                 },
                 body: JSON.stringify(data)
             })
-    
+            const data1 = response.json();
+            console.log(data1)
             if(response.ok){
                 console.log("done");
             }
@@ -49,6 +50,7 @@ const Header = () => {
         <input
           className="header_searchInput"
           type="text"
+          name="name"
           onChange={handleChange}
         />
         <SearchIcon className="header_searchIcon" onClick={handleSubmit} />
