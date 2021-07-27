@@ -10,11 +10,19 @@
 
 .header h1 {
   color: antiquewhite;
-  margin-right: 10px;
+  margin-left: 200px;
+  font-family:cursive;
 }
+
+.header_search h3{
+    margin-left: 120px;
+    color: white;
+}
+
 .header_search {
   display: flex;
   flex: 1;
+  margin-left: 20px;
   align-items: center;
   border-radius: 24px;
 }
@@ -23,7 +31,7 @@
   height: 12px;
   padding: 10px;
   border: none;
-  width: 100%;
+  width: 60%;
 }
 
 .header_searchIcon {
@@ -35,13 +43,12 @@
 .row {
   margin-left: 100px;
   display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
 .row_data {
   display: flex;
   flex-wrap: wrap;
+  flex-direction: column;
   /* overflow-y: hidden;
     overflow-x: scroll; */
   padding: 20px;
@@ -49,6 +56,31 @@
 
 .row_data_single {
   margin: 30px;
-  border: 2px solid black;
+  display: flex;
+  /* border: 2px solid black; */
   padding: 40px;
+}
+
+.row_data_single img{
+    margin-right: 50px;
+    max-width: 20vw;
+    max-height: 20vw;
+}
+
+.row_data_single_desc {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.row_data_item hr{
+    width: 100%;
+}
+
+.row_data_item{
+    /* display: flex;
+    flex-direction: column;
+    flex: 1;
+    justify-content: space-between; */
+    width: 85vw;
 }

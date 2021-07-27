@@ -55,7 +55,7 @@ class Product:
                     json["brand_name"] = i.find("div", {"class": "_2WkVRV"}).getText()
                 json["name"] = i.find("a", {"class": "IRpwTa"}).getText()
                 json["href"] = i.find("a", {"class": "IRpwTa"})["href"]
-                json["img_link"] = i.find("div", {"class": "_312yBx SFzpgZ"}).img
+                json["img_link"] = i.find("div", {"class": "_312yBx SFzpgZ"}).img['src']
                 json["price"] = i.find("div", {"class": "_30jeq3"}).getText()
                 products.append(json)
         return products
