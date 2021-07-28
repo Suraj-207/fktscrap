@@ -1,0 +1,28 @@
+.row_data_single {
+    display: flex;
+    padding: 10px;
+  }
+
+.row_data_single_desc {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.row_data_item hr{
+    width: 100%;
+}
+
+.row_data_item{
+    width: 85vw;
+}
+
+
+  
+  .row_data_single_desc p{
+      float: left;
+  }
+
+  .row_data_single_desc:hover{
+    cursor: pointer;
+  }

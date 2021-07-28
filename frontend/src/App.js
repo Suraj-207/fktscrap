@@ -10,7 +10,7 @@ function App() {
       <div className="App">
         <Context.Provider
         value={{
-          review: {}
+          review: []
         }}>
           <Switch>
             <Route path="/" exact>

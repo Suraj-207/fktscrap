@@ -34,7 +34,6 @@ const Header = () => {
           body: JSON.stringify(data),
         });
         const field = await response.json();
-        console.log(field.result);
         setRes(field.result);
         if (response.ok) {
           console.log("done");
