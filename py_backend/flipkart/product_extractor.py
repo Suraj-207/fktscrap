@@ -5,14 +5,13 @@ from urllib.parse import quote
 
 class Product:
 
-    def __init__(self, name):
-        self.name = name
+    def __init__(self):
         self.url = "https://www.flipkart.com"
 
-    def get_details(self):
+    def get_details(self, name):
         count = 1
         products = []
-        search_query = "/search?q=" + quote(self.name)
+        search_query = "/search?q=" + quote(name)
         res = urlopen(self.url + search_query)
         soup = bs(res.read(), "html.parser")
         pages = [i['href'] for i in soup.find_all("a", {"class": "ge-49M"})]
@@ -60,3 +59,42 @@ class Product:
                 json["price"] = i.find("div", {"class": "_30jeq3"}).getText()
                 products.append(json)
         return products
+
+    def get_review(self, href):
+        review_url = self.url + href
+        res = urlopen(review_url)
+        soup = bs(res.read(), "html.parser")
+        # type 1 check
+        result = soup.find("div", {"class": "col JOpGWq"})
+        type_of_page = 1
+        reviews = []
+        if result is None:
+            # type 2 check
+            result = soup.find("div", {"class": "col JOpGWq _33R3aa"})
+            type_of_page = 2
+
+        if result.find_all('span')[-1].getText().find('All') != -1 and result.find_all('span')[-1].getText().find(
+                'reviews') != -1:
+            all_reviews_page_url = self.url + result.find_all('a')[-1]['href']
+            print(1)
+            res = urlopen(all_reviews_page_url)
+            soup1 = bs(res.read(), "html.parser")
+            if type_of_page == 1:
+                reviews = [dict(zip(['rating', 'review', 'name'], [j.getText() for j in i.find_all('div')][1:6:4] + [
+                    i.find('p', {'class': '_2sc7ZR _2V5EHH'}).getText()])) for i in
+                           soup1.find_all("div", {"class": "col _2wzgFH K0kLPL"})]
+            elif type_of_page == 2:
+                reviews = [dict(zip(['rating', 'review', 'name'], [j.getText() for j in i.find_all('div')][3:5] + [
+                    i.find('p', {'class': '_2sc7ZR _2V5EHH _1QgsS5'}).getText()])) for i in
+                           soup1.find_all("div", {"class": "col _2wzgFH K0kLPL _1QgsS5"})]
+        else:
+            print(2)
+            if type_of_page == 1:
+                reviews = [dict(zip(['rating', 'review', 'name'], [j.getText() for j in i.find_all('div')][1:6:4] + [
+                    i.find('p', {'class': '_2sc7ZR _2V5EHH'}).getText()])) for i in
+                           soup.find_all("div", {"class": "col _2wzgFH"})]
+            elif type_of_page == 2:
+                reviews = [dict(zip(['rating', 'review', 'name'], [j.getText() for j in i.find_all('div')][3:5] + [
+                    i.find('p', {'class': '_2sc7ZR _2V5EHH _1QgsS5'}).getText()])) for i in
+                           soup.find_all("div", {"class": "col _2wzgFH _1QgsS5"})]
+        return reviews

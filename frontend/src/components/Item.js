@@ -20,7 +20,8 @@ const Item = (props) => {
           body: JSON.stringify(data),
         });
         const field = await response.json();
-        console.log(field.result);
+        console.log(field);
+        //console.log(field.result);
         // setRes(field.result);
         if (response.ok) {
           console.log("done");
