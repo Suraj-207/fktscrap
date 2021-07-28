@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import SearchIcon from "@material-ui/icons/Search";
 import LoadingSpinner from "../shared/UIComponent/LoadingSpinner";
 // import { Link } from 'react-router-dom';
+import Item from "../components/Item";
 
 import "./Header.css";
 
@@ -77,16 +78,13 @@ const Header = () => {
           {res &&
             res.map((item, index) => {
               return (
-                <div className="row_data_item" key={item.id}>
-                  <div className="row_data_single">
-                    <img src={item.img_link} alt={item.name} />
-                    <div className="row_data_single_desc">
-                      <h2>{item.name}</h2>
-                      <h3>{item.price}</h3>
-                    </div>
-                  </div>
-                  <hr></hr>
-                </div>
+                <Item
+                  key={item.id}
+                  name={item.name}
+                  src={item.img_link}
+                  price={item.price}
+                  href={item.href}
+                />
               );
             })}
         </div>
