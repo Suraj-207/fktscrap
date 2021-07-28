@@ -20,7 +20,6 @@ const Header = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(formData);
     setLoad(true);
     let fetchData;
 
@@ -80,6 +79,7 @@ const Header = () => {
               return (
                 <Item
                   key={item.id}
+                  id={item.id}
                   name={item.name}
                   src={item.img_link}
                   price={item.price}

@@ -13,7 +13,6 @@
 }
 
 .row_data_single {
-    margin: 30px;
     display: flex;
     /* border: 2px solid black; */
     padding: 40px;
@@ -22,6 +21,11 @@
   .row_data_single img{
       margin-right: 50px;
       max-width: 20vw;
-      max-height: 20vw;
+      max-height: 15vw;
   }
+
+  .row_data_single_desc:hover{
+    cursor: pointer;
+  }
+
   
