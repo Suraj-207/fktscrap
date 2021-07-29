@@ -1,12 +1,13 @@
 from bs4 import BeautifulSoup as bs
 from urllib.request import urlopen
 from urllib.parse import quote
+import config
 
 
 class Product:
 
-    def __init__(self, logger):
-        self.logger = logger
+    def __init__(self):
+        self.logger = config.logger
         self.url = "https://www.flipkart.com"
 
     def get_details(self, name):
@@ -65,42 +66,42 @@ class Product:
             self.logger.log("error", str(e))
 
     def get_review(self, href):
-        # try:
-        review_url = self.url + href
-        res = urlopen(review_url)
-        soup = bs(res.read(), "html.parser")
-        # type 1 check
-        result = soup.find("div", {"class": "col JOpGWq"})
-        type_of_page = 1
-        reviews = []
-        if result is None:
-            # type 2 check
-            result = soup.find("div", {"class": "col JOpGWq _33R3aa"})
-            type_of_page = 2
+        try:
+            review_url = self.url + href
+            res = urlopen(review_url)
+            soup = bs(res.read(), "html.parser")
+            # type 1 check
+            result = soup.find("div", {"class": "col JOpGWq"})
+            type_of_page = 1
+            reviews = []
+            if result is None:
+                # type 2 check
+                result = soup.find("div", {"class": "col JOpGWq _33R3aa"})
+                type_of_page = 2
 
-        if result.find_all('span')[-1].getText().find('All') != -1 and result.find_all('span')[-1].getText().find(
-                'reviews') != -1:
-            all_reviews_page_url = self.url + result.find_all('a')[-1]['href']
-            self.logger.log("info", "more than 5 reviews, redirecting to all reviews page...")
-            res = urlopen(all_reviews_page_url)
-            soup1 = bs(res.read(), "html.parser")
-            if type_of_page == 1:
-                reviews = [dict(zip(['rating', 'review', 'name'], [j.getText() for j in i.find_all('div')][1:6:4] + [
-                    i.find('p', {'class': '_2sc7ZR _2V5EHH'}).getText()])) for i in
-                           soup1.find_all("div", {"class": "col _2wzgFH K0kLPL"})]
-            elif type_of_page == 2:
-                reviews = [dict(zip(['rating', 'review', 'name'], [j.getText() for j in i.find_all('div')][3:5] + [
-                    i.find('p', {'class': '_2sc7ZR _2V5EHH _1QgsS5'}).getText()])) for i in
-                           soup1.find_all("div", {"class": "col _2wzgFH K0kLPL _1QgsS5"})]
-        else:
-            if type_of_page == 1:
-                reviews = [dict(zip(['rating', 'review', 'name'], [j.getText() for j in i.find_all('div')][1:6:4] + [
-                    i.find('p', {'class': '_2sc7ZR _2V5EHH'}).getText()])) for i in
-                           soup.find_all("div", {"class": "col _2wzgFH"})]
-            elif type_of_page == 2:
-                reviews = [dict(zip(['rating', 'review', 'name'], [j.getText() for j in i.find_all('div')][3:5] + [
-                    i.find('p', {'class': '_2sc7ZR _2V5EHH _1QgsS5'}).getText()])) for i in
-                           soup.find_all("div", {"class": "col _2wzgFH _1QgsS5"})]
-        return reviews
-        # except Exception as e:
-        #     self.logger.log("error", str(e))
+            if result.find_all('span')[-1].getText().find('All') != -1 and result.find_all('span')[-1].getText().find(
+                    'reviews') != -1:
+                all_reviews_page_url = self.url + result.find_all('a')[-1]['href']
+                self.logger.log("info", "more than 5 reviews, redirecting to all reviews page...")
+                res = urlopen(all_reviews_page_url)
+                soup1 = bs(res.read(), "html.parser")
+                if type_of_page == 1:
+                    reviews = [dict(zip(['rating', 'review', 'name'], [j.getText() for j in i.find_all('div')][1:6:4] + [
+                        i.find('p', {'class': '_2sc7ZR _2V5EHH'}).getText()])) for i in
+                               soup1.find_all("div", {"class": "col _2wzgFH K0kLPL"})]
+                elif type_of_page == 2:
+                    reviews = [dict(zip(['rating', 'review', 'name'], [j.getText() for j in i.find_all('div')][3:5] + [
+                        i.find('p', {'class': '_2sc7ZR _2V5EHH _1QgsS5'}).getText()])) for i in
+                               soup1.find_all("div", {"class": "col _2wzgFH K0kLPL _1QgsS5"})]
+            else:
+                if type_of_page == 1:
+                    reviews = [dict(zip(['rating', 'review', 'name'], [j.getText() for j in i.find_all('div')][1:6:4] + [
+                        i.find('p', {'class': '_2sc7ZR _2V5EHH'}).getText()])) for i in
+                               soup.find_all("div", {"class": "col _2wzgFH"})]
+                elif type_of_page == 2:
+                    reviews = [dict(zip(['rating', 'review', 'name'], [j.getText() for j in i.find_all('div')][3:5] + [
+                        i.find('p', {'class': '_2sc7ZR _2V5EHH _1QgsS5'}).getText()])) for i in
+                               soup.find_all("div", {"class": "col _2wzgFH _1QgsS5"})]
+            return reviews
+        except Exception as e:
+            self.logger.log("error", str(e))
