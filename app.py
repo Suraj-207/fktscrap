@@ -4,6 +4,7 @@ from flask_cors import CORS
 import os
 from py_backend.API.product_extract_api import FetchProduct
 from py_backend.API.product_review_api import FetchReview, SendReview
+from py_backend.logger.log_db import Logger
 
 app = Flask(__name__, static_url_path='', static_folder='/frontend/build')
 CORS(app)
@@ -21,5 +22,9 @@ api.add_resource(SendReview, '/fetch-review')
 
 
 if __name__ == '__main__':
-    port = int(os.environ.get('PORT', 5000))
-    app.run(host='127.0.0.1', port=port, debug=True)
+    logger = Logger("fktscrap")
+    try:
+        port = int(os.environ.get('PORT', 5000))
+        app.run(host='127.0.0.1', port=port, debug=True)
+    except Exception as e:
+        logger.log("error", str(e))
