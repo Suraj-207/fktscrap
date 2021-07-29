@@ -12,11 +12,11 @@ class FetchReview(Resource):
 
 
 class SendReview(Resource):
-    def post(self):
+    def get(self):
         global href
         if href is not None:
             review = Product().get_review(href)
             href = None
             return review
         else:
-            return {'message': 'no href found'}
+            return None

@@ -10,6 +10,7 @@ const Header = () => {
   const [formData, updateFormData] = useState("");
   const [res, setRes] = useState([]);
   const [load, setLoad] = useState(false);
+  const [err, setErr] = useState(false);
 
   const handleChange = (e) => {
     updateFormData({
@@ -34,6 +35,10 @@ const Header = () => {
           body: JSON.stringify(data),
         });
         const field = await response.json();
+        if(field.result === null || field.result.length === 0 ){
+          setErr(true);
+        }
+        console.log(field.result);
         setRes(field.result);
         if (response.ok) {
           console.log("done");
@@ -71,6 +76,7 @@ const Header = () => {
         </div>
       </form>
       <div> {load && <LoadingSpinner asOverlay />} </div>
+      <div> {err && <div> <h1>No products found</h1> </div>} </div>
       <div className="row">
         <div className="row_data">
           {res &&
