@@ -2,5 +2,7 @@ flask~=2.0.1
 beautifulsoup4~=4.9.3
 flask-restful
 flask-cors
-pymongo[srv]
+pymongo[srv]~=3.12.0
 gunicorn
+config~=0.5.0.post0
+python-dotenv~=0.19.0

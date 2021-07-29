@@ -5,7 +5,7 @@ import LoadingSpinner from "../shared/UIComponent/LoadingSpinner";
 //import Item from "../components/Item";
 
 import "./Header.css";
-import { useHistory } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 
 const Header = () => {
   const [formData, updateFormData] = useState("");
@@ -61,7 +61,7 @@ const Header = () => {
         }}
       >
         <div className="header">
-          <h1>FKTSCRAP</h1>
+          <Link to="/" style={{ textDecoration: 'none' }} ><h1>FKTSCRAP</h1></Link>
           <div className="header_search">
             <input
               className="header_searchInput"
@@ -76,24 +76,6 @@ const Header = () => {
         </div>
       </form>
       <div> {load && <LoadingSpinner asOverlay />} </div>
-      {/* <div> {err && <div> <h1>No products found</h1> </div>} </div> */}
-      {/* <div className="row">
-        <div className="row_data">
-          {res &&
-            res.map((item, index) => {
-              return (
-                <Item
-                  key={item.id}
-                  id={item.id}
-                  name={item.name}
-                  src={item.img_link}
-                  price={item.price}
-                  href={item.href}
-                />
-              );
-            })}
-        </div>
-      </div> */}
     </React.Fragment>
   );
 };

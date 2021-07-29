@@ -43,7 +43,6 @@ const Item = (props) => {
 
   return (
     <div className="row_data_item" key={props.id}>
-      <div> {load && <LoadingSpinner asOverlay />} </div>
       <div className="row_data_single">
         <img src={props.src} alt={props.name} />
         <div className="row_data_single_desc" name="href" onClick={handleClick}>
@@ -52,6 +51,7 @@ const Item = (props) => {
         </div>
       </div>
       <hr></hr>
+      {load && <LoadingSpinner asOverlay />}
     </div>
   );
 };

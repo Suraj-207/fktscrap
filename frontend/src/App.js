@@ -3,19 +3,16 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Header from "./pages/Header";
 import Review from "./pages/Review";
 import Products from './pages/Products';
-import {Context} from "./Context/context";
+import Welcome from "./pages/Welcome";
 
 function App() {
   return (
     <Router>
       <div className="App">
-        <Context.Provider
-        value={{
-          review: []
-        }}>
           <Switch>
             <Route path="/" exact>
               <Header />
+              <Welcome />
             </Route>
             <Route path="/products" exact >
               <Header />
@@ -26,7 +23,6 @@ function App() {
               <Review />
             </Route>
           </Switch>
-        </Context.Provider>
       </div>
     </Router>
   );

@@ -1,0 +1,35 @@
+.intro {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 5rem;
+  font-family:cursive;
+}
+
+.intro h1 h3{
+    display: flex;
+    align-items: center;
+    margin-left: 15px;
+    font-family:cursive;
+}
+
+.intro h1 span {
+    color: rgb(80, 21, 175);
+}
+
+.intro img{
+  max-width: 50%;
+  max-height: 50%;
+}
+
+@media only screen and (max-width: 768px) {
+
+  .intro{
+    margin-top: 7.5rem;
+  }
+
+  .intro img{
+    max-width: 75%;
+    max-height: 75%;
+  }
+}

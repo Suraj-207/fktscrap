@@ -1,5 +1,5 @@
 .row {
-    margin-left: 100px;
+    margin-left: 6.25rem;
     display: flex;
   }
   
@@ -10,4 +10,12 @@
     /* overflow-y: hidden;
       overflow-x: scroll; */
     /* padding: 20px; */
+  }
+
+  @media only screen and (max-width: 768px) {
+    .row {
+      margin-left: 2.5rem;
+      margin-top: 5rem;
+      display: flex;
+    }
   }

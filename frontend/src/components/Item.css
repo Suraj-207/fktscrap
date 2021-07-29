@@ -14,8 +14,7 @@
 
 .row_data_single {
     display: flex;
-    /* border: 2px solid black; */
-    padding: 40px;
+    padding-top: 75px;
   }
   
   .row_data_single img{
@@ -28,4 +27,20 @@
     cursor: pointer;
   }
 
-  
+  @media only screen and (max-width: 768px) {
+    .row_data_single_desc h2,h3{
+        font-size: 0.8rem;
+    }
+
+    .row_data_single {
+        display: flex;
+        padding: 0px;
+      }
+
+      .row_data_single img{
+        margin-right: 50px;
+        margin-top: 18px;
+        max-width: 20vw;
+        max-height: 15vw;
+    }
+  }
