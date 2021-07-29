@@ -24,7 +24,7 @@ class SendReview(Resource):
         try:
             global href
             if href is not None:
-                review = Product().get_review(href)
+                review = Product(logger).get_review(href)
                 logger.log('info', str(review))
                 href = None
                 return review

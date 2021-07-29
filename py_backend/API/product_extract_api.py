@@ -24,7 +24,8 @@ class SendProduct(Resource):
         try:
             global val
             if val is not None:
-                result = Product().get_details(val)
+                result = Product(logger).get_details(val)
+                val = None
                 logger.log("info", "result : " + str(result))
                 return {"result": result}
             else:
