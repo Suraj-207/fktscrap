@@ -3,9 +3,9 @@ from flask_restful import Api
 from flask_cors import CORS
 import os
 from py_backend.API.product_extract_api import FetchProduct
-from py_backend.API.product_review_api import ReviewProduct
+from py_backend.API.product_review_api import FetchReview, SendReview
 
-app = Flask(__name__, static_url_path='', static_folder='frontend/build')
+app = Flask(__name__, static_url_path='', static_folder='/frontend/build')
 CORS(app)
 api = Api(app)
 
@@ -16,7 +16,8 @@ def home_page(path):
 
 
 api.add_resource(FetchProduct, '/find-item')
-api.add_resource(ReviewProduct, '/review')
+api.add_resource(FetchReview, '/review')
+api.add_resource(SendReview, '/fetch-review')
 
 
 if __name__ == '__main__':
