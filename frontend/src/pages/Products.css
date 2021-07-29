@@ -1,0 +1,13 @@
+.row {
+    margin-left: 100px;
+    display: flex;
+  }
+  
+  .row_data {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    /* overflow-y: hidden;
+      overflow-x: scroll; */
+    /* padding: 20px; */
+  }

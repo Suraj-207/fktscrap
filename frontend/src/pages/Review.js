@@ -26,7 +26,6 @@ const Review = () => {
     }catch(err){
       console.log(err);
     }
-    
     fetchData();
   }, [] );
 

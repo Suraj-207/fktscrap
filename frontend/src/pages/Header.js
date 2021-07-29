@@ -2,15 +2,17 @@ import React, { useState } from "react";
 import SearchIcon from "@material-ui/icons/Search";
 import LoadingSpinner from "../shared/UIComponent/LoadingSpinner";
 // import { Link } from 'react-router-dom';
-import Item from "../components/Item";
+//import Item from "../components/Item";
 
 import "./Header.css";
+import { useHistory } from "react-router-dom";
 
 const Header = () => {
   const [formData, updateFormData] = useState("");
-  const [res, setRes] = useState([]);
+  // const [res, setRes] = useState([]);
+  const history = useHistory();
   const [load, setLoad] = useState(false);
-  const [err, setErr] = useState(false);
+  // const [err, setErr] = useState(false);
 
   const handleChange = (e) => {
     updateFormData({
@@ -34,15 +36,13 @@ const Header = () => {
           },
           body: JSON.stringify(data),
         });
-        const field = await response.json();
-        if(field.result === null || field.result.length === 0 ){
-          setErr(true);
-        }
-        console.log(field.result);
-        setRes(field.result);
+        // const field = await response.json();
+        // console.log(field.result);
+        // setRes(field.result);
         if (response.ok) {
           console.log("done");
           setLoad(false);
+            history.push('/products')
         }
       };
     } catch (err) {
@@ -76,8 +76,8 @@ const Header = () => {
         </div>
       </form>
       <div> {load && <LoadingSpinner asOverlay />} </div>
-      <div> {err && <div> <h1>No products found</h1> </div>} </div>
-      <div className="row">
+      {/* <div> {err && <div> <h1>No products found</h1> </div>} </div> */}
+      {/* <div className="row">
         <div className="row_data">
           {res &&
             res.map((item, index) => {
@@ -93,7 +93,7 @@ const Header = () => {
               );
             })}
         </div>
-      </div>
+      </div> */}
     </React.Fragment>
   );
 };
