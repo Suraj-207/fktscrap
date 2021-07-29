@@ -2,7 +2,7 @@ from flask import Flask, send_from_directory
 from flask_restful import Api
 from flask_cors import CORS
 import os
-from py_backend.API.product_extract_api import FetchProduct
+from py_backend.API.product_extract_api import FetchProduct, SendProduct
 from py_backend.API.product_review_api import FetchReview, SendReview
 from py_backend.logger.log_db import Logger
 
@@ -17,6 +17,7 @@ def home_page(path):
 
 
 api.add_resource(FetchProduct, '/find-item')
+api.add_resource(SendProduct, '/fetch-item')
 api.add_resource(FetchReview, '/review')
 api.add_resource(SendReview, '/fetch-review')
 

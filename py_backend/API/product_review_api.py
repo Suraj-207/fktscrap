@@ -25,10 +25,10 @@ class SendReview(Resource):
             global href
             if href is not None:
                 review = Product().get_review(href)
+                logger.log('info', str(review))
                 href = None
                 return review
             else:
-                logger.log("info", "no href specified")
-                return None
+                logger.log("warning", "no href specified")
         except Exception as e:
             logger.log("error", str(e))
