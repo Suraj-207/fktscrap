@@ -15,9 +15,9 @@ Step 4 - Run the following commands -
 Step 5 - Open browser and visit "localhost:80".
 
 # For feedback -
-         email us - sgantayat9@gmail.com ,
+         email us - sgantayat9@gmail.com
                     Suraj_207@outlook.com
          
 #Visit our LinkedIn profiles at - 
-         Suraj Kumar       - https://www.linkedin.com/in/shubham-gantayat-4617521b7/
+         Suraj Kumar       - https://www.linkedin.com/in/suraj-kumar-49b942182/
          Shubham Gantayat  - https://www.linkedin.com/in/shubham-gantayat-4617521b7/
