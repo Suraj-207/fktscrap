@@ -1,6 +1,17 @@
 # fktscrap
 Search your favourite products and get it's reviews from sites like flipkart.
 
-Please visit our site at - http://13.232.90.232/
+The app is deployed on AWS ec2 instance.
 
-For feedback, email us - sgantayat9@gmail.com , Suraj_207@outlook.com
+# Please visit our site at - http://13.232.90.232/
+
+To run it on your local machine - 
+Step 1 - Install docker desktop
+Step 2 - git clone <project url>
+Step 3 - Go to the project directory.
+Step 4 - Run the following commands - 
+         -> docker-compose build
+         -> docker-compose up -d
+Step 5 - Open browser and visit "localhost:80".
+
+# For feedback, email us - sgantayat9@gmail.com , Suraj_207@outlook.com
