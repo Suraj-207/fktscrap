@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from "react";
-// import { Context } from "../Context/context";
 import ReviewItem from "../components/ReviewItem";
 import LoadingSpinner from "../shared/UIComponent/LoadingSpinner";
 import { Link } from "react-router-dom";
 
 const Review = () => {
-  // const product = useContext(Context);
   const [review, setReview] = useState([]);
   const [load, setLoad] = useState(false);
   const [err, setErr] = useState(false);

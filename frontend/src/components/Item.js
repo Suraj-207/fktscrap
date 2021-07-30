@@ -2,11 +2,9 @@ import React, { useState } from "react";
 import "./Item.css";
 import LoadingSpinner from "../shared/UIComponent/LoadingSpinner";
 import {useHistory} from 'react-router-dom';
-// import {Context} from '../Context/context';
 
 const Item = (props) => {
   const history = useHistory();
-  // const updated = useContext(Context);
   const [load, setLoad] = useState(false);
   const handleClick = (e) => {
     let fetchData;
@@ -26,7 +24,6 @@ const Item = (props) => {
           },
           body: JSON.stringify(data),
         });
-        // updated.review = field;
         if (response.ok) {
           console.log("done");
           setLoad(false);

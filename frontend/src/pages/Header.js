@@ -1,18 +1,15 @@
 import React, { useState } from "react";
 import SearchIcon from "@material-ui/icons/Search";
 import LoadingSpinner from "../shared/UIComponent/LoadingSpinner";
-// import { Link } from 'react-router-dom';
-//import Item from "../components/Item";
 
 import "./Header.css";
 import { Link, useHistory } from "react-router-dom";
 
 const Header = () => {
   const [formData, updateFormData] = useState("");
-  // const [res, setRes] = useState([]);
   const history = useHistory();
   const [load, setLoad] = useState(false);
-  // const [err, setErr] = useState(false);
+  const [err, setErr] = useState(false);
 
   const handleChange = (e) => {
     updateFormData({
@@ -29,6 +26,7 @@ const Header = () => {
     try {
       fetchData = async () => {
         const data = { formData };
+        console.log(formData.name);
         const response = await fetch("/api/find-item", {
           method: "POST",
           headers: {
@@ -36,17 +34,16 @@ const Header = () => {
           },
           body: JSON.stringify(data),
         });
-        // const field = await response.json();
-        // console.log(field.result);
-        // setRes(field.result);
         if (response.ok) {
           console.log("done");
           setLoad(false);
-            history.push('/products')
+          window.location.reload(history.push("/products"));
         }
       };
     } catch (err) {
       console.log(err);
+      setLoad(false);
+      setErr(true);
     }
 
     fetchData();
@@ -61,7 +58,9 @@ const Header = () => {
         }}
       >
         <div className="header">
-          <Link to="/" style={{ textDecoration: 'none' }} ><h1>FKTSCRAP</h1></Link>
+          <Link to="/" style={{ textDecoration: "none" }}>
+            <h1>FKTSCRAP</h1>
+          </Link>
           <div className="header_search">
             <input
               className="header_searchInput"
@@ -76,6 +75,7 @@ const Header = () => {
         </div>
       </form>
       <div> {load && <LoadingSpinner asOverlay />} </div>
+      <div> {err && <div><h1>No items found, please try after sometime.</h1> </div> } </div>
     </React.Fragment>
   );
 };
