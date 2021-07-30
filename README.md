@@ -14,4 +14,10 @@ Step 4 - Run the following commands -
          -> docker-compose up -d
 Step 5 - Open browser and visit "localhost:80".
 
-# For feedback, email us - sgantayat9@gmail.com , Suraj_207@outlook.com
+# For feedback -
+         email us - sgantayat9@gmail.com ,
+                    Suraj_207@outlook.com
+         
+#Visit our LinkedIn profiles at - 
+         Suraj Kumar       - https://www.linkedin.com/in/shubham-gantayat-4617521b7/
+         Shubham Gantayat  - https://www.linkedin.com/in/shubham-gantayat-4617521b7/
