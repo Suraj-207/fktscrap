@@ -14,6 +14,7 @@ class FetchProduct(Resource):
             val = request.get_json()['formData']['name']
             result = Product().get_details(val)
             config.logger.log("info", "request : " + val)
+            return result
         except Exception as e:
             config.logger.log("error", str(e))
 

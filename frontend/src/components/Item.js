@@ -19,7 +19,7 @@ const Item = (props) => {
     try {
       fetchData = async () => {
         const data = href;
-        const response = await fetch("http://localhost:5000/review", {
+        const response = await fetch("/api/review", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

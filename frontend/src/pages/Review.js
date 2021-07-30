@@ -14,7 +14,7 @@ const Review = () => {
     let fetchData;
     try{
       fetchData = async () => {
-        const response = await fetch("http://localhost:5000/fetch-review");
+        const response = await fetch("/api/fetch-review");
         const data = await response.json();
         if(data === null || data.length === 0 ){
           setErr(true);

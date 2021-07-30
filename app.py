@@ -10,6 +10,7 @@ from py_backend.logger.log_db import Logger
 app = Flask(__name__, static_url_path='', static_folder='/frontend/build')
 CORS(app)
 api = Api(app)
+config.logger = Logger('fktscrap')
 
 
 @app.route('/', defaults={'path': ''})
@@ -17,13 +18,12 @@ def home_page(path):
     return send_from_directory(app.static_folder,'index.html')
 
 
-api.add_resource(FetchProduct, '/find-item')
-api.add_resource(SendProduct, '/fetch-item')
-api.add_resource(FetchReview, '/review')
-api.add_resource(SendReview, '/fetch-review')
+api.add_resource(FetchProduct, '/api/find-item')
+api.add_resource(SendProduct, '/api/fetch-item')
+api.add_resource(FetchReview, '/api/review')
+api.add_resource(SendReview, '/api/fetch-review')
 
 
 if __name__ == '__main__':
-    config.logger = Logger('fktscrap')
     port = int(os.environ.get('PORT', 5000))
-    app.run(host='127.0.0.1', port=port, debug=True)
+    app.run(host='0.0.0.0', port=port, debug=True)

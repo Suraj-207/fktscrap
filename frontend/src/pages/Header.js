@@ -29,7 +29,7 @@ const Header = () => {
     try {
       fetchData = async () => {
         const data = { formData };
-        const response = await fetch("http://localhost:5000/find-item", {
+        const response = await fetch("/api/find-item", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
